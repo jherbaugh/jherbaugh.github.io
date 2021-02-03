@@ -1,0 +1,11 @@
+name: "jasons-website"
+output_dir: "."
+navbar:
+  title: "Jasons Website"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "About Me"
+      href: about.html
+    - text: "Beer Case Study"
+      href: EDA_Final.html
