@@ -2,11 +2,11 @@
 title: "About Me"
 ---
 
-- __Your name: Jason Herbaugh
-- __Current Location: Washington, DC
-- __Your Interests: Triathlon, Video Games, Data Science, Travel
-- __Current employer: Bates White Economic Consulting
-- __Undergraduate School: Gannon Univerisity Erie,PA
+- Your name: Jason Herbaugh
+- Current Location: Washington, DC
+- Your Interests: Triathlon, Video Games, Data Science, Travel
+- Current employer: Bates White Economic Consulting
+- Undergraduate School: Gannon University Erie,PA
 
 Here is a super cool photo of one of my favorite places: Florence. 
 

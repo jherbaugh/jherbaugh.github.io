@@ -293,6 +293,9 @@ $(document).ready(function () {
 <li>
   <a href="EDA_Final.html">Beer Case Study</a>
 </li>
+<li>
+  <a href="Beer_App.html">Beer Shiny App</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -858,8 +861,8 @@ head(beerbrew,6)</code></pre>
 ## 5          1 Strongho~    2688 0.06     25 Amer~     16 &quot;NorthGate ~ Minn~
 ## 6          1 Parapet ~    2687 0.056    47 Extr~     16 &quot;NorthGate ~ Minn~
 ## # ... with 6 more variables: State &lt;chr&gt;, Class &lt;chr&gt;,
-## #   ABV.pmm.imputed &lt;dbl&gt;, IBU.pmm.imputed &lt;int&gt;,
-## #   IBU.class.imputed &lt;dbl&gt;, ABV.class.imputed &lt;dbl&gt;</code></pre>
+## #   ABV.pmm.imputed &lt;dbl&gt;, IBU.pmm.imputed &lt;int&gt;, IBU.class.imputed &lt;dbl&gt;,
+## #   ABV.class.imputed &lt;dbl&gt;</code></pre>
 <pre class="r"><code>tail(beerbrew,6)</code></pre>
 <pre><code>## # A tibble: 6 x 15
 ## # Groups:   Class [5]
@@ -872,8 +875,8 @@ head(beerbrew,6)</code></pre>
 ## 5        557 Porkslap~      49 0.043    NA Amer~     12 Butternuts ~ Garr~
 ## 6        558 Urban Wi~      30 0.049    NA Engl~     12 Sleeping La~ Anch~
 ## # ... with 6 more variables: State &lt;chr&gt;, Class &lt;chr&gt;,
-## #   ABV.pmm.imputed &lt;dbl&gt;, IBU.pmm.imputed &lt;int&gt;,
-## #   IBU.class.imputed &lt;dbl&gt;, ABV.class.imputed &lt;dbl&gt;</code></pre>
+## #   ABV.pmm.imputed &lt;dbl&gt;, IBU.pmm.imputed &lt;int&gt;, IBU.class.imputed &lt;dbl&gt;,
+## #   ABV.class.imputed &lt;dbl&gt;</code></pre>
 <p>Question 3: Address the missing values in each column.See above for imputing using two methods. Here we will compare methods and decide which is best to use for subsequent analyses</p>
 <pre class="r"><code>#stacked histogram comparing imputation methods, transform wide to long first
 imputed.IBU &lt;- beerbrew %&gt;% select(Beer_ID,Class,IBU,IBU.pmm.imputed,IBU.class.imputed)
@@ -928,18 +931,18 @@ StateData %&gt;% ggplot(aes(x=reorder(abb, -IBU.class.median), y=IBU.class.media
 max.abv</code></pre>
 <pre><code>## # A tibble: 1 x 6
 ## # Groups:   Class [1]
-##   Beer_Name                     ABV Class Style     State Brewery_Name    
-##   &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;           
-## 1 Lee Hill Series Vol. 5 - B~ 0.128 Other Quadrupe~ &quot; CO&quot; Upslope Brewing~</code></pre>
+##   Beer_Name                     ABV Class Style      State Brewery_Name    
+##   &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;           
+## 1 Lee Hill Series Vol. 5 - B~ 0.128 Other Quadrupel~ &quot; CO&quot; Upslope Brewing~</code></pre>
 <pre class="r"><code>#Answer Colorado, Lee Hill Series Vol.5, ABV = 0.128, Upslope Brewing Company
 
 max.ibu &lt;- beerbrew %&gt;% filter(IBU==max(beerbrew$IBU,na.rm=TRUE)) %&gt;% select(Beer_Name,IBU,Class,Style,State,Brewery_Name)
 max.ibu</code></pre>
 <pre><code>## # A tibble: 1 x 6
 ## # Groups:   Class [1]
-##   Beer_Name           IBU Class Style              State Brewery_Name     
-##   &lt;chr&gt;             &lt;int&gt; &lt;chr&gt; &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt;            
-## 1 Bitter Bitch Imp~   138 IPA   American Double /~ &quot; OR&quot; Astoria Brewing ~</code></pre>
+##   Beer_Name            IBU Class Style              State Brewery_Name     
+##   &lt;chr&gt;              &lt;int&gt; &lt;chr&gt; &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt;            
+## 1 Bitter Bitch Impe~   138 IPA   American Double /~ &quot; OR&quot; Astoria Brewing ~</code></pre>
 <pre class="r"><code>#Answer Oregon, Bitter Bitch Imperial, IBU = 138</code></pre>
 <p>Answer 5: Max ABV beer = 12.8% by Upslope Brewing Company, Colorado Lee Hill Series Vol. 5 - Belgian Style Quadrupel Ale Brewed with a select strain of Belgian yeast and traditional Belgian candy syrup, the beer matured over six months to mellow and soften its character.</p>
 <p>Max IBU Beer = 138 by Astoria Brewing Company, Oregon Bitter Bitch Imperial IPA A big IPA with a huge bite. Peoples Award Winner 3 Years running at the Spring Beer &amp; Wine Festival, Portland, OR.</p>
@@ -1545,39 +1548,40 @@ gg</code></pre>
 ## 
 ## loaded via a namespace (and not attached):
 ##   [1] ggsignif_0.6.0       ellipsis_0.3.1       rio_0.5.16          
-##   [4] fs_1.5.0             rstudioapi_0.11      farver_2.0.3        
-##   [7] ggrepel_0.8.2        prodlim_2019.11.13   fansi_0.4.1         
-##  [10] lubridate_1.7.9      ranger_0.12.1        xml2_1.3.2          
-##  [13] splines_4.0.3        codetools_0.2-16     robustbase_0.93-6   
-##  [16] knitr_1.30           Formula_1.2-4        jsonlite_1.7.1      
-##  [19] pROC_1.16.2          broom_0.7.2          dbplyr_2.0.0        
-##  [22] compiler_4.0.3       httr_1.4.2           backports_1.1.10    
-##  [25] assertthat_0.2.1     Matrix_1.2-18        lazyeval_0.2.2      
-##  [28] cli_2.1.0            htmltools_0.5.0      tools_4.0.3         
-##  [31] gtable_0.3.0         glue_1.4.2           reshape2_1.4.4      
-##  [34] tinytex_0.27         Rcpp_1.0.5           carData_3.0-4       
-##  [37] cellranger_1.1.0     vctrs_0.3.4          nlme_3.1-149        
-##  [40] iterators_1.0.13     lmtest_0.9-38        timeDate_3043.102   
-##  [43] xfun_0.19            gower_0.2.2          laeken_0.5.1        
-##  [46] openxlsx_4.2.3       rvest_0.3.6          lifecycle_0.2.0     
-##  [49] rstatix_0.6.0        DEoptimR_1.0-8       MASS_7.3-53         
-##  [52] zoo_1.8-8            scales_1.1.1         ipred_0.9-9         
-##  [55] hms_0.5.3            RColorBrewer_1.1-2   yaml_2.2.1          
-##  [58] curl_4.3             rpart_4.1-15         reshape_0.8.8       
-##  [61] stringi_1.5.3        foreach_1.5.1        boot_1.3-25         
-##  [64] zip_2.1.1            lava_1.6.8.1         rlang_0.4.8         
-##  [67] pkgconfig_2.0.3      evaluate_0.14        labeling_0.4.2      
-##  [70] recipes_0.1.15       htmlwidgets_1.5.2    tidyselect_1.1.0    
-##  [73] plyr_1.8.6           magrittr_1.5         R6_2.5.0            
-##  [76] generics_0.1.0       DBI_1.1.0            mgcv_1.8-33         
-##  [79] pillar_1.4.6         haven_2.3.1          foreign_0.8-80      
-##  [82] withr_2.3.0          survival_3.2-7       abind_1.4-5         
-##  [85] sp_1.4-4             nnet_7.3-14          modelr_0.1.8        
-##  [88] crayon_1.3.4         car_3.0-10           utf8_1.1.4          
-##  [91] rmarkdown_2.5        readxl_1.3.1         data.table_1.13.2   
-##  [94] ModelMetrics_1.2.2.2 vcd_1.4-8            reprex_0.3.0        
-##  [97] digest_0.6.27        stats4_4.0.3         munsell_0.5.0       
-## [100] viridisLite_0.3.0</code></pre>
+##   [4] rsconnect_0.8.16     fs_1.5.0             rstudioapi_0.11     
+##   [7] farver_2.0.3         ggrepel_0.8.2        prodlim_2019.11.13  
+##  [10] fansi_0.4.1          lubridate_1.7.9      ranger_0.12.1       
+##  [13] xml2_1.3.2           splines_4.0.3        codetools_0.2-16    
+##  [16] robustbase_0.93-6    knitr_1.30           Formula_1.2-4       
+##  [19] jsonlite_1.7.1       pROC_1.16.2          broom_0.7.2         
+##  [22] dbplyr_2.0.0         compiler_4.0.3       httr_1.4.2          
+##  [25] backports_1.1.10     assertthat_0.2.1     Matrix_1.2-18       
+##  [28] lazyeval_0.2.2       cli_2.1.0            htmltools_0.5.0     
+##  [31] tools_4.0.3          gtable_0.3.0         glue_1.4.2          
+##  [34] reshape2_1.4.4       tinytex_0.27         Rcpp_1.0.5          
+##  [37] carData_3.0-4        cellranger_1.1.0     vctrs_0.3.4         
+##  [40] nlme_3.1-149         iterators_1.0.13     lmtest_0.9-38       
+##  [43] timeDate_3043.102    xfun_0.19            gower_0.2.2         
+##  [46] laeken_0.5.1         openxlsx_4.2.3       rvest_0.3.6         
+##  [49] lifecycle_0.2.0      rstatix_0.6.0        DEoptimR_1.0-8      
+##  [52] MASS_7.3-53          zoo_1.8-8            scales_1.1.1        
+##  [55] ipred_0.9-9          hms_0.5.3            RColorBrewer_1.1-2  
+##  [58] yaml_2.2.1           curl_4.3             rpart_4.1-15        
+##  [61] reshape_0.8.8        stringi_1.5.3        foreach_1.5.1       
+##  [64] boot_1.3-25          zip_2.1.1            lava_1.6.8.1        
+##  [67] rlang_0.4.8          pkgconfig_2.0.3      evaluate_0.14       
+##  [70] labeling_0.4.2       recipes_0.1.15       htmlwidgets_1.5.2   
+##  [73] tidyselect_1.1.0     plyr_1.8.6           magrittr_1.5        
+##  [76] R6_2.5.0             generics_0.1.0       DBI_1.1.0           
+##  [79] mgcv_1.8-33          pillar_1.4.6         haven_2.3.1         
+##  [82] foreign_0.8-80       withr_2.3.0          survival_3.2-7      
+##  [85] abind_1.4-5          sp_1.4-4             nnet_7.3-14         
+##  [88] modelr_0.1.8         crayon_1.3.4         car_3.0-10          
+##  [91] utf8_1.1.4           rmarkdown_2.5        readxl_1.3.1        
+##  [94] data.table_1.13.2    ModelMetrics_1.2.2.2 vcd_1.4-8           
+##  [97] reprex_0.3.0         digest_0.6.27        openssl_1.4.3       
+## [100] stats4_4.0.3         munsell_0.5.0        viridisLite_0.3.0   
+## [103] askpass_1.1</code></pre>
 
 
 
