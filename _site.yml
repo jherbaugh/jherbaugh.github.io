@@ -9,3 +9,5 @@ navbar:
       href: about.html
     - text: "Beer Case Study"
       href: EDA_Final.html
+    - text: "Beer Shiny APP"
+      href: Beer_App.html
